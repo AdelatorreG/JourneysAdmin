@@ -1,33 +1,51 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import {
-  BrowserRouter as Router,
-  Route,
-} from 'react-router-dom';
+import logo from '../images/logo.svg';
+import { Link, NavLink } from 'react-router-dom';
 import './App.css';
-import Navigation from './Navigation';
-import SignUpPage from './SignUp';
-import SignInPage from './SignIn';
 
-const App = () =>
-  <Router>
-    <Navigation />
-  </Router>
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-/* class App extends Component {
+import Navigation from "./Navigation";
+import welcomeforms from "./welcomeforms";
+import loginforms from "./loginforms";
+import footer from "./footer";
+import navbar from "./navbar";
+
+
+class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <BrowserRouter>
+        <div>
+          <Navigation />
+          <Switch>
+            <Route path="/loginforms" component={loginforms} exact />
+            <Route path="/welcomeforms" component={welcomeforms} exact />
+            <Route path="/footer" component={footer} exact />
+            <Route path="/navbar" component={navbar} exact />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
-} */
+};
+/*
+const App = () =>
+  <Router>
+    <Navigation/>
+  </Router>*/
+/*
+ class App extends Component {
 
+  render() {
+    return (
+   <Router>
+   <div>
+   <Navigation />
+   </div>
+ </Router>
+    );
+  }
+ } 
+*/
 export default App;
