@@ -17,32 +17,21 @@ ReactDOM.render(<Nav />, document.getElementById('nav'));
 registerServiceWorker();
 
 /*
-
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const { mongoose } = require('./database');
-
-
 const app = express();
-
 //settings
 app.set('port',process.env.PORT || 3000);
-
 //middlewares
 app.use(morgan('dev'));
 app.use(express.json());//cada vez que llega un dato verifica que sea un json 
-
 //routes
 app.use('/api/airports',require('./routes/journeys.routes'));
-
-
 //static files
 app.use(express.static(path.join(__dirname,'public')));
-
 //starting server
-
-
 app.listen(app.get('port'),()=>{
     console.log(`Server on port ${app.get('port')}`);
 });*/
