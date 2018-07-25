@@ -72,24 +72,3 @@ render(){
 };
 
 export default Navigation;
-
-/*
-const Navigation = () =>
-  <div>
-    <ul>
-      <li><Link to={routes.LOG_IN}>Sign In</Link></li>
-    </ul>
-  </div>*/
-/*
-  export default class Navigation extends Component {
-  render() {
-    return (
-      <div>
-      <ul>
-        <li><Link to={routes.LOG_IN}></Link></li>
-      </ul>
-    </div>
-    );
-  }
- } 
-*/

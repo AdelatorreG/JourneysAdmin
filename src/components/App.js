@@ -29,23 +29,5 @@ class App extends Component {
     );
   }
 };
-/*
-const App = () =>
-  <Router>
-    <Navigation/>
-  </Router>*/
-/*
- class App extends Component {
 
-  render() {
-    return (
-   <Router>
-   <div>
-   <Navigation />
-   </div>
- </Router>
-    );
-  }
- } 
-*/
 export default App;
