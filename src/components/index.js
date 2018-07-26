@@ -10,9 +10,9 @@ import Footer from './components/footer';
 
 //ReactDOM.render(<Welcome/>, document.getElementById('wel'));
 
-ReactDOM.render(<Nav />, document.getElementById('nav'));
-ReactDOM.render(<Login />, document.getElementById('lg'));
-ReactDOM.render(<Footer/>, document.getElementById('ftr'));
+//ReactDOM.render(<Nav />, document.getElementById('nav'));
+//ReactDOM.render(<Login />, document.getElementById('lg'));
+//ReactDOM.render(<Footer/>, document.getElementById('ftr'));
 registerServiceWorker();
 
 /*

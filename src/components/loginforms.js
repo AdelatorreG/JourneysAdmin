@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Input, Icon, Button, Footer } from 'react-materialize';
+import { Row, Col, Input, Icon, Button, Footer, Navbar, NavItem, Dropdown } from 'react-materialize';
 import Navigation from './Navigation';
 import welcomeforms from './welcomeforms';
 import { Link, NavLink } from 'react-router-dom';
@@ -43,7 +43,9 @@ export default class Login extends Component {
             return(<div/>)
         }
         return (
-            <div>                   
+            <div>       
+                <Navbar brand='Journeys' left className='blue'>
+                </Navbar>            
                 <Row>
                     <Col m={8} l={4} className='push-m2 push-l4'>
                         <h1 className='center'>Journeys </h1>
@@ -52,8 +54,7 @@ export default class Login extends Component {
                         <Row>
                         <Col  s={12} m={12} className='center'>
                         <NavLink to="/welcomeforms">
-                        <Button onClick={this.unmountChild.bind(this)}
-                        className='waves-effect waves-light btn blue'>Login</Button>
+                        <Button className='waves-effect waves-light btn blue'>Login </Button>
                         </NavLink>
                         </Col>
                         

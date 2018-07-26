@@ -1,6 +1,6 @@
 import React, {Component}from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Row, Col, Input, Icon, Button, Footer } from 'react-materialize';
+import { Row, Col, Input, Icon, Button, Footer, Navbar, NavItem, Dropdown } from 'react-materialize';
 
 import * as routes from '../constants/routes';
 
@@ -38,6 +38,8 @@ render(){
     }
     return(
       <div>
+                        <Navbar brand='Journeys' left className='blue'>
+                </Navbar>
  <Row>
       <Col m={8} l={4} className='push-m2 push-l4'>
         <Row>
