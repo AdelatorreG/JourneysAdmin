@@ -9,9 +9,9 @@ import Login from './components/loginforms';
 import Footer from './components/footer';
 import App from './components/App';
 
-//ReactDOM.render(<Welcome/>, document.getElementById('wel'));
 ReactDOM.render(<App />, document.getElementById('app'));
 ReactDOM.render(<Nav />, document.getElementById('nav'));
+<<<<<<< HEAD
 //ReactDOM.render(<Login />, document.getElementById('lg'));
 //ReactDOM.render(<Footer/>, document.getElementById('ftr'));
 registerServiceWorker();
@@ -35,3 +35,6 @@ app.use(express.static(path.join(__dirname,'public')));
 app.listen(app.get('port'),()=>{
     console.log(`Server on port ${app.get('port')}`);
 });*/
+=======
+registerServiceWorker();
+>>>>>>> e7fd5bde40550326711a8fabf3ca5f16ca91fd15
