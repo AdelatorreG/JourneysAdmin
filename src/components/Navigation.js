@@ -67,7 +67,7 @@ render(){
     }
     brand='Journeys' right className='blue'
   >
-  </Footer>;        
+  </Footer>        
     </div>
     );
   }

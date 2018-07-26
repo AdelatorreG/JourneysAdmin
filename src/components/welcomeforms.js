@@ -48,7 +48,7 @@ export default class Welcome extends Component {
     }
     brand='Journeys' right className='blue'
   >
-  </Footer>;        
+  </Footer>        
             </div>
 
         );

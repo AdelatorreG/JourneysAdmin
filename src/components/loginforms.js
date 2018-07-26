@@ -113,7 +113,10 @@ export default class Login extends Component {
                         <Row>
                         <Col  s={12} m={12} className='center'>
                         <NavLink to="/welcomeforms">
-                        <Button className='waves-effect waves-light btn blue' disabled={!this.state.formValid}>Login </Button>
+                        <Button onClick={this.unmountChild.bind(this)}
+                        className='waves-effect waves-light btn blue' 
+                        disabled={!this.state.formValid}>Login 
+                        </Button>
                         </NavLink>
                         </Col>
                         
@@ -131,7 +134,7 @@ export default class Login extends Component {
     }
     brand='Journeys' right className='blue'
   >
-  </Footer>;        
+  </Footer>       
             </div>
             
         );

@@ -13,7 +13,7 @@ export default () => {
     </ul>
   }
   >
-</Footer>;
+</Footer>
     </div>
   )
 }
