@@ -51,16 +51,10 @@ export default class Login extends Component {
                         <Input type="password" label="password" s={12} validate><Icon>lock</Icon></Input>
                         <Row>
                         <Col  s={12} m={12} className='center'>
-<<<<<<< HEAD
                         <NavLink to="/welcomeforms">
                         <Button onClick={this.unmountChild.bind(this)}
                         className='waves-effect waves-light btn blue'>Login</Button>
                         </NavLink>
-    
-
-=======
-                        <Button className='waves-effect waves-light btn blue'>Login </Button>
->>>>>>> 64f086e085711ef2cb96cdd2ccd63e667a049422
                         </Col>
                         
                         </Row>
