@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -19,6 +20,8 @@ ReactDOM.render(<App />, document.getElementById('app'));
 registerServiceWorker();
 
 /*
+=======
+>>>>>>> c1544250457fcc08fb5ad6e47331a670326c957f
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
@@ -30,7 +33,13 @@ app.set('port',process.env.PORT || 3000);
 app.use(morgan('dev'));
 app.use(express.json());//cada vez que llega un dato verifica que sea un json 
 //routes
+<<<<<<< HEAD
 app.use('/api/airports',require('./routes/journeys.routes'));
+=======
+app.use('/api/journeys',require('./routes/journeys.routes'));
+
+
+>>>>>>> c1544250457fcc08fb5ad6e47331a670326c957f
 //static files
 app.use(express.static(path.join(__dirname,'public')));
 //starting server
