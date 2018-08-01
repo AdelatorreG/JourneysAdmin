@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Toast, Modal, Button } from 'react-materialize';
+import { Toast, Modal, Button, Col } from 'react-materialize';
 import AddAirportView from './AddVuelos';
 
 import './estilos.css'
@@ -110,8 +110,8 @@ class Airport extends Component {
                                                     </Col>
                                                     <Col m='6' className=''>
 
-                                                        <button className="waves-effect waves-light light-blue darken-3 btn small"
-                                                            onClick={() => this.DeleteAirport(Aeropuertos._id)}>
+                                                        <button className="waves-effect waves-light light-blue darken-3 btn small" style={{margin: "6px"}}
+                                                            onClick={() => this.DeleteAirport(Vuelos._id)}>
                                                             <i className="material-icons ">edit</i>
                                                         </button>
                                                     </Col>
