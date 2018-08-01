@@ -21,7 +21,6 @@ class Airport extends Component{
 
 
     AddAirport(e){
-        
         fetch('http://localhost:3001/api/journeys/Apts', {
             method: 'POST',
             body: JSON.stringify(this.state),
@@ -45,7 +44,6 @@ class Airport extends Component{
         .catch(err=> console.error(err));
         e.preventDefault();
 
-
     }
 
     handleChange(e){
@@ -54,6 +52,7 @@ class Airport extends Component{
             [name]: value
         });
     }
+
 
     render(){
         return(

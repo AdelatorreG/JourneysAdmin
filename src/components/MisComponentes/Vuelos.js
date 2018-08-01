@@ -1,13 +1,13 @@
 
 import React, {Component } from 'react';
-import { Toast, Modal, Button } from 'react-materialize';
-import AddAirportView from './AddVuelos';
+import { Toast, Modal, Button,Col,Row } from 'react-materialize';
+import AddFlightsView from './AddFlights';
 
 import './estilos.css'
 
-class Airport extends Component{
-    constructor(){
-        super();
+class Flights extends Component{
+    constructor(props){
+        super(props);
         this.state={
             Vuelos:[]
         };
@@ -26,7 +26,7 @@ class Airport extends Component{
         }
 
     DeleteFlights(id){
-        if(window.confirm('Estas seguro de eliminar el aeropuerto')){
+        if(window.confirm('Estas seguro de eliminar el vuelo')){
             fetch(`http://localhost:3001/api/journeys/Flgts/${id}`,{
                 method:'DELETE',
                 headers: {
@@ -36,7 +36,7 @@ class Airport extends Component{
             })
             .then(res=>res.json())
             .then(data=>{
-                window.Materialize.toast("Aeropuerto Eliminado");
+                window.Materialize.toast("Vuelo Eliminado");
                 this.fetchFlights();
             });
         }
@@ -56,14 +56,14 @@ class Airport extends Component{
                         </div>
                         <div className="col s3 "><a className="waves-effect waves-light light-blue darken-3 btn-large">Search</a></div>
                         <div className="col s3 push-s1 ">
-                        <Modal header="Agregar nuevo aeropuerto" className="MiModal center"
+                        <Modal header="Agregar nuevo vuelo" className="MiModal center"
                             trigger={
                                 <Button className="waves-effect waves-light light-blue darken-3">
-                                    Agregar Aeropuerto
+                                    Agregar Vuelo
                                 </Button>
                             }>
 
-                            <AddAirportView/> 
+                            <AddFlightsView/> 
                             {this.fetchFlights()}
                         </Modal>
                         </div>
@@ -120,4 +120,4 @@ class Airport extends Component{
     }
 }
 
-export default Airport;
+export default Flights;

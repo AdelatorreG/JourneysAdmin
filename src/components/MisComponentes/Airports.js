@@ -2,13 +2,15 @@
 import React, {Component } from 'react';
 import { Toast, Modal, Button } from 'react-materialize';
 import AddAirportView from './AddAirport';
+import EditAirportView from './EditAirport';
 
 import './estilos.css'
 
 class Airport extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
+            
             Aeropuertos:[]
         };
     }
@@ -17,6 +19,7 @@ class Airport extends Component{
         this.fetchAirports();
     }
     
+    
     fetchAirports(){
         fetch('http://localhost:3001/api/journeys/Apts/')  
             .then(res=>res.json())
@@ -24,6 +27,7 @@ class Airport extends Component{
                 this.setState({Aeropuertos:data});
             });
         }
+
 
     DeleteAirport(id){
         if(window.confirm('Estas seguro de eliminar el aeropuerto')){
@@ -95,14 +99,21 @@ class Airport extends Component{
                                                 <td>{Aeropuertos.Ap_City}</td>
                                                 <td>{Aeropuertos.Ap_Address}</td>
                                                 <td>
-                                                    <button className="waves-effect waves-light light-blue darken-3 btn small" style={{margin:"6px"}} 
+                                                    <button className="waves-effect waves-light light-blue darken-3 btn small" style={{margin:"4px"}} 
                                                     onClick={()=>this.DeleteAirport(Aeropuertos._id)}>
                                                         <i className="material-icons ">delete</i>
                                                     </button>
-                                                    <button className="waves-effect waves-light light-blue darken-3 btn" style={{margin:"6px"}} 
-                                                    onClick={()=>this.DeleteAirport(Aeropuertos._id)}>
-                                                        <i className="material-icons ">edit</i>
-                                                    </button>
+                                                    <Modal header="Editar aeropuerto" className="MiModal center"
+                                                        trigger={
+                                                            <button onClick={()=> this.EditAirportView(Aeropuertos._id)}className="waves-effect waves-light light-blue darken-3 btn small" style={{margin:"4px"}}>
+                                                            <i className="material-icons ">edit</i>
+                                                            </button>
+                                                    }>
+
+                                                    <EditAirportView/>
+                                                    {this.fetchAirports()}
+                                                    </Modal>
+
                                                 </td>
                                             </tr>
                                         )
