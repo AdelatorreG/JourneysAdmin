@@ -1,70 +1,70 @@
 
-import React, {Component } from 'react';
-import { Toast, Modal, Button } from 'react-materialize';
+import React, { Component } from 'react';
+import { Toast, Modal, Button, Row, Col } from 'react-materialize';
 import AddAirportView from './AddAirport';
 
 import './estilos.css'
 
-class Airport extends Component{
-    constructor(){
+class Airport extends Component {
+    constructor() {
         super();
-        this.state={
-            Aeropuertos:[]
+        this.state = {
+            Aeropuertos: []
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.fetchAirports();
     }
-    
-    fetchAirports(){
-        fetch('http://localhost:3001/api/journeys/Apts/')  
-            .then(res=>res.json())
-            .then(data=>{
-                this.setState({Aeropuertos:data});
-            });
-        }
 
-    DeleteAirport(id){
-        if(window.confirm('Estas seguro de eliminar el aeropuerto')){
-            fetch(`http://localhost:3001/api/journeys/Apts/${id}`,{
-                method:'DELETE',
+    fetchAirports() {
+        fetch('http://localhost:3001/api/journeys/Apts/')
+            .then(res => res.json())
+            .then(data => {
+                this.setState({ Aeropuertos: data });
+            });
+    }
+
+    DeleteAirport(id) {
+        if (window.confirm('Estas seguro de eliminar el aeropuerto')) {
+            fetch(`http://localhost:3001/api/journeys/Apts/${id}`, {
+                method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
             })
-            .then(res=>res.json())
-            .then(data=>{
-                window.Materialize.toast("Aeropuerto Eliminado");
-                this.fetchAirports();
-            });
+                .then(res => res.json())
+                .then(data => {
+                    window.Materialize.toast("Aeropuerto Eliminado");
+                    this.fetchAirports();
+                });
         }
     }
 
 
-    render(){
-        return(
+    render() {
+        return (
             <div className="container">
                 <div className="section">
                     <div className="row valign-wrapper">
                         <div className="col s6 input-field light-blue darken-3 ">
-                            <input id="search" type="search" required/>
+                            <input id="search" type="search" required />
                             <label className="label-icon" ><i className="material-icons">search</i></label>
                             <i className="material-icons">close</i>
                         </div>
                         <div className="col s3 "><a className="waves-effect waves-light light-blue darken-3 btn-large">Search</a></div>
                         <div className="col s3 push-s1 ">
-                        <Modal header="Agregar nuevo aeropuerto" className="MiModal center"
-                            trigger={
-                                <Button className="waves-effect waves-light light-blue darken-3">
-                                    Agregar Aeropuerto
+                            <Modal header="Agregar nuevo aeropuerto" className="MiModal center"
+                                trigger={
+                                    <Button className="waves-effect waves-light light-blue darken-3">
+                                        Agregar Aeropuerto
                                 </Button>
-                            }>
+                                }>
 
-                            <AddAirportView/> 
-                            {this.fetchAirports()}
-                        </Modal>
+                                <AddAirportView />
+                                {this.fetchAirports()}
+                            </Modal>
                         </div>
                     </div>
                 </div>
@@ -86,8 +86,8 @@ class Airport extends Component{
                             </thead>
                             <tbody >
                                 {
-                                    this.state.Aeropuertos.map(Aeropuertos=>{
-                                        return(
+                                    this.state.Aeropuertos.map(Aeropuertos => {
+                                        return (
                                             <tr key={Aeropuertos._id}>
                                                 <td>{Aeropuertos.Ap_Name}</td>
                                                 <td>{Aeropuertos.Ap_Country}</td>
@@ -95,14 +95,20 @@ class Airport extends Component{
                                                 <td>{Aeropuertos.Ap_City}</td>
                                                 <td>{Aeropuertos.Ap_Address}</td>
                                                 <td>
-                                                    <button className="waves-effect waves-light light-blue darken-3 btn small" style={{margin:"6px"}} 
-                                                    onClick={()=>this.DeleteAirport(Aeropuertos._id)}>
-                                                        <i className="material-icons ">delete</i>
-                                                    </button>
-                                                    <button className="waves-effect waves-light light-blue darken-3 btn" style={{margin:"6px"}} 
-                                                    onClick={()=>this.DeleteAirport(Aeropuertos._id)}>
+                                                    <Col m='6' className=''>
+                                                        <button className="waves-effect waves-light light-blue darken-3 btn small"
+                                                            onClick={() => this.DeleteAirport(Aeropuertos._id)}>
+                                                            <i className="material-icons ">delete</i>
+                                                        </button>
+                                                    </Col>
+                                                    <Col m='6' className=''>
+
+                                                    <button className="waves-effect waves-light light-blue darken-3 btn small"
+                                                        onClick={() => this.DeleteAirport(Aeropuertos._id)}>
                                                         <i className="material-icons ">edit</i>
                                                     </button>
+                                                    </Col>
+
                                                 </td>
                                             </tr>
                                         )
@@ -110,6 +116,16 @@ class Airport extends Component{
                                 }
                             </tbody>
                         </table>
+
+                        <ul class="pagination center">
+                            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                            <li class="active"><a href="#!">1</a></li>
+                            <li class="waves-effect"><a href="#!">2</a></li>
+                            <li class="waves-effect"><a href="#!">3</a></li>
+                            <li class="waves-effect"><a href="#!">4</a></li>
+                            <li class="waves-effect"><a href="#!">5</a></li>
+                            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
