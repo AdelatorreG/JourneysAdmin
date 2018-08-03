@@ -26,7 +26,7 @@ class Airport extends Component{
         }
 
     DeleteFlights(id){
-        if(window.confirm('Estas seguro de eliminar el aeropuerto')){
+        if(window.confirm('Estas seguro de eliminar el vuelo')){
             fetch(`http://localhost:3001/api/journeys/Flgts/${id}`,{
                 method:'DELETE',
                 headers: {
@@ -36,7 +36,7 @@ class Airport extends Component{
             })
             .then(res=>res.json())
             .then(data=>{
-                window.Materialize.toast("Aeropuerto Eliminado");
+                window.Materialize.toast("Vuelo Eliminado");
                 this.fetchFlights();
             });
         }
@@ -105,6 +105,10 @@ class Airport extends Component{
                                                     <button className="waves-effect waves-light light-blue darken-3 btn small" style={{margin:"6px"}} 
                                                      onClick={()=>this.DeleteFlights(Vuelos._id)}>
                                                         <i className="material-icons ">delete</i>
+                                                    </button>
+                                                    <button className="waves-effect waves-light light-blue darken-3 btn" style={{margin:"6px"}} 
+                                                    onClick={()=>this.DeleteFlight(Vuelos._id)}>
+                                                        <i className="material-icons ">edit</i>
                                                     </button>
                                                 </td>
                                             </tr>

@@ -1,7 +1,6 @@
 
 import React, {Component } from 'react';
 import { Toast, Modal, Button, Col, Row } from 'react-materialize';
-import AddAirportView from './AddAirport';
 
 import './estilos.css'
 
