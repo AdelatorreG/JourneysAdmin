@@ -4,6 +4,8 @@ const router = express.Router();
 const airportModel = require('../models/airportsModel');
 const flightModel = require('../models/flightsModel');
 const permissionsModel = require('../models/permissionsModel');
+const userModel = require('../models/usersModel');
+const clientModel = require('../models/ClientModel');
 
 router.get('/Apts/', async (req,res)=>{
     const TodosLosAeropuertos = await airportModel.find();
@@ -17,15 +19,15 @@ router.get('/Apts/:id', async (req,res)=>{
 });
 
 router.post('/Apts/', async (req,res)=>{
-    const {Ap_Name, Ap_Country, Ap_State, Ap_City, Ap_Address} = req.body;
-    const NuevoAeropuerto = new airportModel({Ap_Name, Ap_Country, Ap_State, Ap_City, Ap_Address});
+    const {Ap_Code, Ap_Name, Ap_Country, Ap_State, Ap_City, Ap_Address} = req.body;
+    const NuevoAeropuerto = new airportModel({Ap_Code, Ap_Name, Ap_Country, Ap_State, Ap_City, Ap_Address});
     await NuevoAeropuerto.save();
     res.json({status:'Airport saved'});
 });
 
 router.put('/Apts/:id', async (req,res)=>{
-    const {Ap_Name, Ap_Country, Ap_State, Ap_City, Ap_Address} = req.body;
-    const ActualizarAeropuerto = {Ap_Name, Ap_Country, Ap_State, Ap_City, Ap_Address};
+    const {Ap_Code, Ap_Name, Ap_Country, Ap_State, Ap_City, Ap_Address} = req.body;
+    const ActualizarAeropuerto = {Ap_Code, Ap_Name, Ap_Country, Ap_State, Ap_City, Ap_Address};
     await airportModel.findByIdAndUpdate(req.params.id, ActualizarAeropuerto);
     res.json({status:'Airport updated'});
 });
@@ -129,5 +131,120 @@ router.put('/Permissions/:id', async (req,res)=>{
 });
 
 //////////////////////////////
+
+router.get('/User/', async (req,res)=>{
+    const TodosLosUsuarios = await userModel.find();
+    res.json(TodosLosUsuarios);
+}
+);
+
+router.get('/User/:id', async (req,res)=>{
+    const UsuarioPorId = await userModel.findById(req.params.id);
+    res.json(UsuarioPorId);
+});
+
+router.post('/User/', async (req,res)=>{
+    const {
+        first_name, last_name,
+        email, role, telephone,
+        password
+    } = req.body;
+    const NuevoUsuario = new userModel({
+        first_name,
+        last_name,
+        email,
+        role,
+        telephone,
+        password
+    });
+    await NuevoUsuario.save();
+    res.json({status:'User saved'});
+});
+
+router.put('/User/:id', async (req,res)=>{
+    const {
+        first_name,
+        last_name,
+        email,
+        role,
+        telephone,
+        password
+    } = req.body;
+    const ActualizarUsuario = {
+        first_name,
+        last_name,
+        email,
+        role,
+        telephone,
+        password
+    };
+    await userModel.findByIdAndUpdate(req.params.id, ActualizarUsuario);
+    res.json({status:'User updated'});
+});
+
+
+router.delete('/User/:id', async (req,res)=>{
+    await userModel.findByIdAndRemove(req.params.id);
+    res.json({status:'User deleted'});
+});
+
+///////////////////////////////
+
+
+router.get('/Clnts/', async (req,res)=>{
+    const TodosLosClientes = await clientModel.find();
+    res.json(TodosLosClientes);
+}
+);
+
+router.get('/Client/:id', async (req,res)=>{
+    const ClientePorId = await clientModel.findById(req.params.id);
+    res.json(ClientePorId);
+});
+
+router.post('/Clnts/', async (req,res)=>{
+    const {
+        first_name, last_name,
+        email, role, phone,
+        password
+    } = req.body;
+    const NuevoCliente = new clientModel({
+        first_name,
+        last_name,
+        email,
+        role,
+        phone,
+        password
+    });
+    await NuevoCliente.save();
+    res.json({status:'Client saved'});
+});
+
+router.put('/Clnts/:id', async (req,res)=>{
+    const {
+        first_name,
+        last_name,
+        email,
+        role,
+        phone,
+        password
+    } = req.body;
+    const ActualizarCliente = {
+        first_name,
+        last_name,
+        email,
+        role,
+        phone,
+        password
+    };
+    await clientModel.findByIdAndUpdate(req.params.id, ActualizarCliente);
+    res.json({status:'Client updated'});
+});
+
+
+router.delete('/Clnts/:id', async (req,res)=>{
+    await clientModel.findByIdAndRemove(req.params.id);
+    res.json({status:'Client deleted'});
+});
 
 module.exports = router;

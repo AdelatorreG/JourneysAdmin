@@ -13,6 +13,7 @@ class Airport extends Component{
     constructor(props){
         super(props);
         this.state={
+            Ap_Code:'',
             Ap_Name:'', 
             Ap_Country:'',
             Ap_State:'',
@@ -100,6 +101,7 @@ class Airport extends Component{
                                     <table className=" highlight">
                                         <thead>
                                             <tr>
+                                                <th>Codigo</th>
                                                 <th>Nombre de Aeropuerto</th>
                                                 <th>Pais</th>
                                                 <th>Estado</th>
@@ -112,6 +114,7 @@ class Airport extends Component{
                                             {filteredAeropuertos.map(Aeropuertos => {
                                                 return (
                                                     <tr key={Aeropuertos._id}>
+                                                        <td>{Aeropuertos.Ap_Code}</td>
                                                         <td>{Aeropuertos.Ap_Name}</td>
                                                         <td>{Aeropuertos.Ap_Country}</td>
                                                         <td>{Aeropuertos.Ap_State}</td>

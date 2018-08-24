@@ -11,6 +11,7 @@ class Flight extends Component{
     constructor(){
         super();
         this.state={
+            Ap_Code:'',
             Ap_Name:'',
             Ap_Country:'',
             Origen: '',
@@ -83,6 +84,8 @@ class Flight extends Component{
     });
   }
 
+
+
     handleChange(e){
         const {name, value} = e.target;
         this.setState({
@@ -111,7 +114,7 @@ class Flight extends Component{
 
     render(){
         let optionItems = this.state.Aeropuertos.map((Aeropuerto) =>
-        <option key={Aeropuerto._id}>{Aeropuerto.Ap_Name}</option>
+        <option key={Aeropuerto._id}>{Aeropuerto.Ap_Code}</option>
     );
           
         return(

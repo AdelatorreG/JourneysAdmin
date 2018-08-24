@@ -8,6 +8,7 @@ class Airport extends Component{
     constructor(){
         super();
         this.state={
+            Ap_Code:'',
             Ap_Name:'',
             Ap_Country:'',
             Origen: '',

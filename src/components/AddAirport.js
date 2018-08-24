@@ -6,6 +6,7 @@ class Airport extends Component{
     constructor(){
         super();
         this.state={
+            Ap_Code:'',
             Ap_Name:'', 
             Ap_Country:'',
             Ap_State:'',
@@ -31,6 +32,7 @@ class Airport extends Component{
         .then(data => {
             window.Materialize.toast("Aeropuerto Agregado",900,"light-blue darken-3")
             this.setState({
+                Ap_Code:'',
                 Ap_Name:'', 
                 Ap_Country:'',
                 Ap_State:'',
@@ -58,6 +60,11 @@ class Airport extends Component{
         return(
             <div>
                 <form onSubmit={this.AddAirport}>
+                <div className="row">
+                        <div className="input-field col s10 push-s1 MiInputField">
+                        <input  name="Ap_Code" value={this.state.Ap_Code}  onChange={this.handleChange} type="text" placeholder="Codigo de Aeropuerto"/>
+                        </div>
+                    </div>
                     <div className="row">
                         <div className="input-field col s10 push-s1 MiInputField">
                         <input  name="Ap_Name" value={this.state.Ap_Name}  onChange={this.handleChange} type="text" placeholder="Nombre de Aeropuerto"/>

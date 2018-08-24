@@ -7,6 +7,7 @@ class Airport extends Component{
     constructor(){
         super();
         this.state={
+            Ap_Code:'',
             Ap_Name:'', 
             Ap_Country:'',
             Ap_State:'',
@@ -26,6 +27,7 @@ class Airport extends Component{
         .then(res=>res.json())
         .then(data=>{
             this.setState({
+                Ap_Code:data.Ap_Code,
                 Ap_Name:data.Ap_Name,
                 Ap_Country: data.Ap_Country,
                 Ap_State:data.Ap_State,
@@ -61,6 +63,12 @@ class Airport extends Component{
     render(){
         return(
             <div>
+                 <div className="row">
+                    <label className="col s3">
+                        Code
+                    </label>
+                        <input className="input-field col s10 push-s1 EditField" name="Ap_Code" value={this.state.Ap_Code} onChange={this.handleChange} type="text" placeholder="Codigo de Aeropuerto"/>
+                </div>
                 <div className="row">
                     <label className="col s3">
                         Name
@@ -95,6 +103,7 @@ class Airport extends Component{
                 <div className="row">
                     <div className="col s1 push-s9">
                         <button onClick={()=>{this.GuardarCambios()}}  className="btn light-blue darken-3 large" disabled={
+                            !this.state.Ap_Code ||
                             !this.state.Ap_Address ||
                             !this.state.Ap_City ||
                             !this.state.Ap_Country ||

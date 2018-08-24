@@ -28,15 +28,70 @@ class Permisos extends Component{
         };
         this.handleChange = this.handleChange.bind(this);
         this.searchUpdated = this.searchUpdated.bind(this);
+        this.SendChanges = this.SendChanges.bind(this);
+        this.SaveOne = this.SaveOne.bind(this);
 
+    }
+
+    SaveOne(id){
+        this.state.Permisos.forEach(element => {
+            if(element["_id"]==id){
+                this.setState({
+                    P_Numero: element["P_Numero"]
+                  });
+                  this.setState({
+                    P_UserName: element["P_UserName"]
+                  });
+                  this.setState({
+                    P_Date: element["P_Date"]
+                  });
+                  this.setState({
+                    P_For_Airports: element["P_For_Airports"]
+                  });
+                  this.setState({
+                    P_For_Flights: element["P_For_Flights"]
+                  });
+                  this.setState({
+                    P_For_Usernames: element["P_For_Usernames"]
+                  });
+                  this.setState({
+                    status: element["status"]
+                  });
+                  this.GuardarCambios(id);
+            }
+        });
     }
     
     SendChanges(){
         var id="";
         this.state.Permisos.forEach(element => {
             id = element["_id"]
+            this.setState({
+                _id: element["_id"]
+              });
+            this.setState({
+                P_Numero: element["P_Numero"]
+              });
+              this.setState({
+                P_UserName: element["P_UserName"]
+              });
+              this.setState({
+                P_Date: element["P_Date"]
+              });
+              this.setState({
+                P_For_Airports: element["P_For_Airports"]
+              });
+              this.setState({
+                P_For_Flights: element["P_For_Flights"]
+              });
+              this.setState({
+                P_For_Usernames: element["P_For_Usernames"]
+              });
+              this.setState({
+                status: element["status"]
+              });
             console.log(id);
-            this.GuardarCambios(id);
+            this.GuardarCambios(this.state._id);
         });
     }
 
@@ -80,7 +135,7 @@ class Permisos extends Component{
             });
         }
 
-    DeletePermiso(id){
+    DeleteUsers(id){
         if(window.confirm('Estas seguro de eliminar el Usuario')){
             fetch(`http://localhost:3001/api/journeys/permissions/${id}`,{
                 method:'DELETE',
@@ -157,6 +212,7 @@ class Permisos extends Component{
                                     <th>Vuelos</th>
                                     <th>Permisos</th>
                                     <th>Habilitar</th>
+                                    <th>Save</th>
                                 </tr>
                             </thead>
                             <tbody >
@@ -201,12 +257,18 @@ class Permisos extends Component{
                             name="group4"
                             type="switch"
                             value="Permisos.status"
-                            onChange={this.handleChange(Permisos._id,"status")}
+                            //onChange={this.handleChange(Permisos._id,"status")}
                             checked={Permisos.status}
+                            className='filled-in'
                             id={"estado"+Permisos._id}
                         />}
                     </td>
-
+                    <td>{
+                        <button onClick={()=>{this.SaveOne(Permisos._id)}}  className="btn light-blue darken-3 large right">
+                            Guardar
+                        </button>
+                    }</td>
+                   
                 </tr>
             )
         })

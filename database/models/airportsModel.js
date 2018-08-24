@@ -3,6 +3,7 @@ const {Schema} = mongoose;
 //const Schema = mongoose.Schema; //igual que arriba pero revolcado
 
 let AirportSchema = new Schema({
+    Ap_Code:{type:String, required:true},
     Ap_Name:{type:String, requiered:true,},
     Ap_Country:{type:String, requiered:true,},
     Ap_State:{type:String, requiered:true,},

@@ -1,11 +1,12 @@
 
 import React, {Component } from 'react';
-import { Modal, Button, Row, Col} from 'react-materialize';
+import { Modal, Button, Row, Col, Pagination, PaginationButton} from 'react-materialize';
 import SearchInput, {createFilter} from 'react-search-input';
 import AddAFlightsView from './AddFlights';
 import EditFlights from './EditFlights';
 
 import './estilos.css'
+import Permisos from './Permisos';
 
 const KEYS_TO_FILTERS = [
     'Origen', 
@@ -17,6 +18,8 @@ const KEYS_TO_FILTERS = [
     'Capacidad',
     'Precio'
 ]
+
+const Header = ["Origen","Fecha_De_Salida","Hora_De_Salida","Destino","Fecha_De_Llegada","Hora_De_Llegada","Capacidad","Precio"];
 
 class Airport extends Component{
     constructor(props){
@@ -165,6 +168,9 @@ class Airport extends Component{
                                         }
                                     </tbody>
                                 </table>
+                                <div>
+                                <Pagination items={Permisos.length} activePage={1} maxButtons={5} />
+                                </div>
                                 <ul className="pagination center">
                                     <li className="disabled"><a href="#!"><i className="material-icons">chevron_left</i></a></li>
                                     <li className="active"><a href="#!">1</a></li>
