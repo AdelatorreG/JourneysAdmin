@@ -7,9 +7,9 @@ let UserSchema = new Schema({
     last_name:{type:String, requiered:true,},
     email:{type:String, requiered:true,},
     role:{type:String, requiered:true,},
-    telephone:{type:String, requiered:true,},
+    phone:{type:String, requiered:true,},
     password:{type:String, required:true}
 });
 
 
-module.exports=mongoose.model('Users',UserSchema);//collection airports
+module.exports=mongoose.model('User',UserSchema);//collection airports

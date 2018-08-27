@@ -4,8 +4,8 @@ const router = express.Router();
 const airportModel = require('../models/airportsModel');
 const flightModel = require('../models/flightsModel');
 const permissionsModel = require('../models/permissionsModel');
-const userModel = require('../models/usersModel');
-const clientModel = require('../models/ClientModel');
+const UserModel = require('../models/usersModel');
+
 
 router.get('/Apts/', async (req,res)=>{
     const TodosLosAeropuertos = await airportModel.find();
@@ -132,29 +132,30 @@ router.put('/Permissions/:id', async (req,res)=>{
 
 //////////////////////////////
 
+
 router.get('/User/', async (req,res)=>{
-    const TodosLosUsuarios = await userModel.find();
+    const TodosLosUsuarios = await UserModel.find();
     res.json(TodosLosUsuarios);
 }
 );
 
 router.get('/User/:id', async (req,res)=>{
-    const UsuarioPorId = await userModel.findById(req.params.id);
+    const UsuarioPorId = await UserModel.findById(req.params.id);
     res.json(UsuarioPorId);
 });
 
 router.post('/User/', async (req,res)=>{
     const {
         first_name, last_name,
-        email, role, telephone,
+        email, role, phone,
         password
     } = req.body;
-    const NuevoUsuario = new userModel({
+    const NuevoUsuario = new UserModel({
         first_name,
         last_name,
         email,
         role,
-        telephone,
+        phone,
         password
     });
     await NuevoUsuario.save();
@@ -167,7 +168,7 @@ router.put('/User/:id', async (req,res)=>{
         last_name,
         email,
         role,
-        telephone,
+        phone,
         password
     } = req.body;
     const ActualizarUsuario = {
@@ -175,76 +176,21 @@ router.put('/User/:id', async (req,res)=>{
         last_name,
         email,
         role,
-        telephone,
+        phone,
         password
     };
-    await userModel.findByIdAndUpdate(req.params.id, ActualizarUsuario);
+    await UserModel.findByIdAndUpdate(req.params.id, ActualizarUsuario);
     res.json({status:'User updated'});
 });
 
 
 router.delete('/User/:id', async (req,res)=>{
-    await userModel.findByIdAndRemove(req.params.id);
+    await UserModel.findByIdAndRemove(req.params.id);
     res.json({status:'User deleted'});
 });
 
 ///////////////////////////////
 
 
-router.get('/Clnts/', async (req,res)=>{
-    const TodosLosClientes = await clientModel.find();
-    res.json(TodosLosClientes);
-}
-);
-
-router.get('/Client/:id', async (req,res)=>{
-    const ClientePorId = await clientModel.findById(req.params.id);
-    res.json(ClientePorId);
-});
-
-router.post('/Clnts/', async (req,res)=>{
-    const {
-        first_name, last_name,
-        email, role, phone,
-        password
-    } = req.body;
-    const NuevoCliente = new clientModel({
-        first_name,
-        last_name,
-        email,
-        role,
-        phone,
-        password
-    });
-    await NuevoCliente.save();
-    res.json({status:'Client saved'});
-});
-
-router.put('/Clnts/:id', async (req,res)=>{
-    const {
-        first_name,
-        last_name,
-        email,
-        role,
-        phone,
-        password
-    } = req.body;
-    const ActualizarCliente = {
-        first_name,
-        last_name,
-        email,
-        role,
-        phone,
-        password
-    };
-    await clientModel.findByIdAndUpdate(req.params.id, ActualizarCliente);
-    res.json({status:'Client updated'});
-});
-
-
-router.delete('/Clnts/:id', async (req,res)=>{
-    await clientModel.findByIdAndRemove(req.params.id);
-    res.json({status:'Client deleted'});
-});
 
 module.exports = router;
