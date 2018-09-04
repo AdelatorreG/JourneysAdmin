@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import NavbarWhenLogged from './components/NavbarWhenLogged';
-import PageFooter from './components/Footer';
+import PageFooter from './components/footer';
 import Content from './components/Content';
 
 
