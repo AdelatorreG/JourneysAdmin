@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 //const Schema = mongoose.Schema; //igual que arriba pero revolcado
 
-let CardSchema = new Schema({
+let CardsSchema = new Schema({
     Ap_Number:{type:String, required:true},
     Ap_Type:{type:String, requiered:true,},
     Ap_Exp_Month:{type:String, requiered:true,},
@@ -13,4 +13,4 @@ let CardSchema = new Schema({
 });
 
 
-module.exports=mongoose.model('Airports',AirportSchema);//collection airports
+module.exports=mongoose.model('Cards',CardsSchema);//collection airports
