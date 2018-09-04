@@ -5,6 +5,8 @@ const airportModel = require('../models/airportsModel');
 const flightModel = require('../models/flightsModel');
 const permissionsModel = require('../models/permissionsModel');
 const UserModel = require('../models/usersModel');
+const cardModel = require('../models/CardsModel');
+const myFlightsModel = require('../models/myFlightsModel');
 
 
 router.get('/Apts/', async (req,res)=>{
@@ -190,6 +192,78 @@ router.delete('/User/:id', async (req,res)=>{
 });
 
 ///////////////////////////////
+
+router.get('/Cards/', async (req,res)=>{
+    const TodasLasCartas = await cardModel.find();
+    res.json(TodasLasCartas);
+}
+);
+
+router.get('/Cards/:id', async (req,res)=>{
+    const CartasPorId = await cardModel.findById(req.params.id);
+    res.json(CartasPorId);
+});
+
+router.post('/Cards/', async (req,res)=>{
+    const {Ap_Number, Ap_Type, Ap_Exp_Month, Ap_Exp_Year, Ap_CSV, Ap_Name, Ap_Customer_ID} = req.body;
+    const CartasPorId = new cardModel({Ap_Number, Ap_Type, Ap_Exp_Month, Ap_Exp_Year, Ap_CSV, Ap_Name, Ap_Customer_ID});
+    await CartasPorId.save();
+    res.json({status:'Card saved'});
+});
+
+router.put('/Cards/:id', async (req,res)=>{
+    const {Ap_Number, Ap_Type, Ap_Exp_Month, Ap_Exp_Year, Ap_CSV, Ap_Name, Ap_Customer_ID} = req.body;
+    const ActualizarCarta = {Ap_Number, Ap_Type, Ap_Exp_Month, Ap_Exp_Year, Ap_CSV, Ap_Name, Ap_Customer_ID};
+    await cardModel.findByIdAndUpdate(req.params.id, ActualizarCarta);
+    res.json({status:'Card updated'});
+});
+
+router.delete('/Cards/:id', async (req,res)=>{
+    await cardModel.findByIdAndRemove(req.params.id);
+    res.json({status:'Card deleted'});
+});
+
+//////////////////////
+
+router.get('/myFlights/', async (req,res)=>{
+    const TodosMisVuelos = await myFlightsModel.find();
+    res.json(TodosMisVuelos);
+}
+);
+
+router.get('/myFlights/:id', async (req,res)=>{
+    const MisVuelosPorId = await myFlightsModel.findById(req.params.id);
+    res.json(MisVuelosPorId);
+});
+
+router.post('/myFlights/', async (req,res)=>{
+    const {
+        vueloId, userId, seat
+    } = req.body;
+    const NuevoMiVuelo = new myFlightsModel({
+        vueloId, userId, seat
+    });
+    await NuevoMiVuelo.save();
+    res.json({status:'Flight saved'});
+});
+
+router.put('/myFlights/:id', async (req,res)=>{
+    const {
+        vueloId, userId, seat
+    } = req.body;
+    const ActualizarMiVuelo = {
+        vueloId, userId, seat  
+    };
+    await myFlightsModel.findByIdAndUpdate(req.params.id, ActualizarMiVuelo);
+    res.json({status:'Flight updated'});
+});
+
+router.delete('/myFlights/:id', async (req,res)=>{
+    await myFlightsModel.findByIdAndRemove(req.params.id);
+    res.json({status:'Flight deleted'});
+});
+
+
 
 
 
