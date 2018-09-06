@@ -287,11 +287,7 @@ class Permisos extends Component{
                             <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
                         </ul>
                         </Row>
-                        <Row>
-                        <button onClick={()=>{this.SendChanges()}}  className="btn light-blue darken-3 large right">
-                                            Guardar Cambios
-                        </button>
-                        </Row>
+ 
                         </div>
                         </div>
                     </div>
