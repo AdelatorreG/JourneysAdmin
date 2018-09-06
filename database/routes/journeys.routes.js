@@ -6,7 +6,7 @@ const flightModel = require('../models/flightsModel');
 const permissionsModel = require('../models/permissionsModel');
 const userModel = require('../models/usersModel');
 const clientModel = require('../models/ClientModel');
-const cardModel = require('../models/CardsModel');
+const CardsModel = require('../models/CardsModel');
 
 router.get('/Apts/', async (req,res)=>{
     const TodosLosAeropuertos = await airportModel.find();
@@ -251,32 +251,32 @@ router.delete('/Clnts/:id', async (req,res)=>{
 /////////////////////////////
 
 router.get('/Cards/', async (req,res)=>{
-    const TodasLasCartas = await cardModel.find();
+    const TodasLasCartas = await CardsModel.find();
     res.json(TodasLasCartas);
 }
 );
 
 router.get('/Cards/:id', async (req,res)=>{
-    const CartasPorId = await cardModel.findById(req.params.id);
+    const CartasPorId = await CardsModel.findById(req.params.id);
     res.json(CartasPorId);
 });
 
 router.post('/Cards/', async (req,res)=>{
     const {Ap_Number, Ap_Type, Ap_Exp_Month, Ap_Exp_Year, Ap_CSV, Ap_Name, Ap_Customer_ID} = req.body;
-    const CartasPorId = new cardModel({Ap_Number, Ap_Type, Ap_Exp_Month, Ap_Exp_Year, Ap_CSV, Ap_Name, Ap_Customer_ID});
-    await CartasPorId.save();
+    const NuevaCarta = new CardsModel({Ap_Number, Ap_Type, Ap_Exp_Month, Ap_Exp_Year, Ap_CSV, Ap_Name, Ap_Customer_ID});
+    await NuevaCarta.save();
     res.json({status:'Card saved'});
 });
 
 router.put('/Cards/:id', async (req,res)=>{
     const {Ap_Number, Ap_Type, Ap_Exp_Month, Ap_Exp_Year, Ap_CSV, Ap_Name, Ap_Customer_ID} = req.body;
     const ActualizarCarta = {Ap_Number, Ap_Type, Ap_Exp_Month, Ap_Exp_Year, Ap_CSV, Ap_Name, Ap_Customer_ID};
-    await cardModel.findByIdAndUpdate(req.params.id, ActualizarCarta);
+    await CardsModel.findByIdAndUpdate(req.params.id, ActualizarCarta);
     res.json({status:'Card updated'});
 });
 
 router.delete('/Cards/:id', async (req,res)=>{
-    await cardModel.findByIdAndRemove(req.params.id);
+    await CardsModel.findByIdAndRemove(req.params.id);
     res.json({status:'Card deleted'});
 });
 
